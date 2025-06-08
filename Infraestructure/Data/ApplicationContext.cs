@@ -1,0 +1,148 @@
+﻿using Domain.Constants;
+using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Infraestructure.Data
+{
+    public class ApplicationContext : DbContext
+    {
+        public DbSet<User> Users { get; set; }
+        public DbSet<Court> Courts { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+
+        // Esto de acá no crea todas estas tablas sino que las hace disponibles para consultas en vez de tener que llamar a la tabla Users
+        public DbSet<Client> clients { get; set; }
+        public DbSet<SysAdmin> sysAdmins { get; set; }
+
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            // User (abstract base)
+            modelBuilder.Entity<User>()
+             .HasDiscriminator<RolesEnum>("Role")
+             .HasValue<Client>(RolesEnum.Client)
+             .HasValue<SysAdmin>(RolesEnum.SysAdmin);
+
+            // Client - Reservation
+            modelBuilder.Entity<Reservation>()
+                .HasOne(r => r.Client)
+                .WithMany(c => c.Reservations)
+                .HasForeignKey(r => r.ClientId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Reservation>()
+                .HasOne(r => r.Court)
+                .WithMany(c => c.Reservations)
+                .HasForeignKey(r => r.CourtId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+        modelBuilder.Entity<Client>().HasData(new Client
+            {
+                Id = 2,
+                FullName = "Joaquin Tanlongo",
+                Email = "joako.tanlon@gmail.com",
+                Password = "123",
+                PhoneNumber = "3412122907",
+                Role = RolesEnum.Client
+            },
+            new Client
+            {
+                Id = 3,
+                FullName = "Maximo Martin",
+                Email = "marmax0504@gmail.com",
+                Password = "456",
+                PhoneNumber = "3412122908",
+                Role = RolesEnum.Client
+            },
+            new Client
+            {
+                Id = 4,
+                FullName = "Mario Massonnat",
+                Email = "marucomass@gmail.com",
+                Password = "789",
+                PhoneNumber = "3412122909",
+                Role = RolesEnum.Client
+            },
+            new Client
+            {
+                Id = 5,
+                FullName = "Francisco Depetrini",
+                Email = "frandepe7@gmail.com",
+                Password = "111",
+                PhoneNumber = "3412122910",
+                Role = RolesEnum.Client
+            }
+        );
+             
+
+
+
+        modelBuilder.Entity<Court>().HasData(new Court
+            {
+                Id = 1,
+                Name = "5A",
+                Duration = "1h",
+                Price = 40,
+                Description = "Cancha techada con cesped cintetico y caucho"
+            },
+            new Court
+            {
+                Id = 2,
+                Name = "5B",
+                Duration = "1h",
+                Price = 45,
+                Description = "Cancha techada con cesped cintetico y caucho"
+            },
+            new Court
+            {
+                Id = 3,
+                Name = "6A",
+                Duration = "1h",
+                Price = 60,
+                Description = "Cancha techada con cesped cintetico y caucho"
+            },
+            new Court
+            {
+                Id = 4,
+                Name = "6C",
+                Duration = "1h",
+                Price = 60,
+                Description = "Cancha techada con cesped cintetico y caucho"
+            },
+            new Court
+            {
+                Id = 5,
+                Name = "7T",
+                Duration = "1h",
+                Price = 70,
+                Description = "Cancha techada con cesped cintetico y caucho"
+            },
+            new Court
+            {
+                Id = 6,
+                Name = "7AL",
+                Duration = "1h",
+                Price = 70,
+                Description = "Cancha al aire libre con cesped cintetico y caucho"
+            },
+            new Court
+            {
+                Id = 7,
+                Name = "8AL",
+                Duration = "1h",
+                Price = 83,
+                Description = "Cancha al aire libre con cesped cintetico y caucho"
+            }
+            );
+
+        }
+    }
+}
