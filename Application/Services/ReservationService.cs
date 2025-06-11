@@ -24,7 +24,7 @@ namespace Application.Services
 
         public async Task<List<ReservationDto>> GetAllReservation()
         {
-            var reservations = await _reservationRepository.GetAll();
+            var reservations = await _reservationRepository.GetAllAsync();
             return reservations.Select(ReservationDto.Create).ToList();
         }
 
@@ -50,9 +50,9 @@ namespace Application.Services
             return reservations.Select(ReservationDto.Create).ToList();
         } 
 
-        public async Task<List<ReservationDto>> GetAllReservationForCourt(int courtId)
+        public async Task<List<ReservationDto>> GetAllReservationForCourt(string courtName)
         {
-            var reservations = await _reservationRepository.GetAllReservationForCourt(courtId);
+            var reservations = await _reservationRepository.GetAllReservationForCourt(courtName.ToUpper());
 
             if (reservations == null)
                 throw new Exception("No hay reservas para ese dia");

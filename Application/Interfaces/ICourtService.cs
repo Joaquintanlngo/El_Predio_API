@@ -11,7 +11,7 @@ namespace Application.Interfaces
 {
     public interface ICourtService
     {
-        Task<List<CourtDto>> GetAll();
+        Task<List<CourtFrontDto>> GetAll();
         Task<Court> GetById(int id);
         Task<Court> Create(CourtRequest request);
         Task<Court> Update(CourtUpdateRequest request);

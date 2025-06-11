@@ -16,6 +16,7 @@ namespace Application.Models.Responses
 
         public static ClientDto Create(Client client)
         {
+            if (client == null) throw new Exception("Not client");
             return new ClientDto
             {
                 FullName = client.FullName,

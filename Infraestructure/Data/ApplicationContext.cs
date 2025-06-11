@@ -89,57 +89,64 @@ namespace Infraestructure.Data
             {
                 Id = 1,
                 Name = "5A",
-                Duration = "1h",
-                Price = 40,
-                Description = "Cancha techada con cesped cintetico y caucho"
+                Duration = "60 min",
+                Price = 40000,
+                Description = "Cancha techada con cesped cintetico y caucho",
+                Category = "Techada"
             },
             new Court
             {
                 Id = 2,
                 Name = "5B",
-                Duration = "1h",
-                Price = 45,
-                Description = "Cancha techada con cesped cintetico y caucho"
+                Duration = "60 min",
+                Price = 45000,
+                Description = "Cancha techada con cesped cintetico y caucho",
+                Category = "Techada"
             },
             new Court
             {
                 Id = 3,
                 Name = "6A",
-                Duration = "1h",
-                Price = 60,
-                Description = "Cancha techada con cesped cintetico y caucho"
+                Duration = "60 min",
+                Price = 60000,
+                Description = "Cancha techada con cesped cintetico y caucho",
+                Category = "Techada"
             },
             new Court
             {
                 Id = 4,
                 Name = "6C",
-                Duration = "1h",
-                Price = 60,
-                Description = "Cancha techada con cesped cintetico y caucho"
+                Duration = "60 min",
+                Price = 60000,
+                Description = "Cancha techada con cesped cintetico y caucho",
+                Category = "Techada"
             },
             new Court
             {
                 Id = 5,
                 Name = "7T",
-                Duration = "1h",
-                Price = 70,
-                Description = "Cancha techada con cesped cintetico y caucho"
+                Duration = "60 min",
+                Price = 70000,
+                Description = "Cancha techada con cesped cintetico y caucho",
+                Category = "Techada"
             },
             new Court
             {
                 Id = 6,
                 Name = "7AL",
-                Duration = "1h",
-                Price = 70,
-                Description = "Cancha al aire libre con cesped cintetico y caucho"
+                Duration = "60 min",
+                Price = 70000,
+                Description = "Cancha al aire libre con cesped cintetico y caucho",
+                Category = "Aire Libre"
             },
             new Court
             {
                 Id = 7,
                 Name = "8AL",
-                Duration = "1h",
-                Price = 83,
-                Description = "Cancha al aire libre con cesped cintetico y caucho"
+                Duration = "60 min",
+                Price = 83000,
+                Description = "Cancha al aire libre con cesped cintetico y caucho",
+                Category = "Aire Libre"
             }
             );
 

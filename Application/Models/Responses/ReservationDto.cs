@@ -21,7 +21,9 @@ namespace Application.Models.Responses
 
         public static ReservationDto Create(Reservation reservation)
         {
-            return new ReservationDto
+            if (reservation == null)
+                throw new Exception("Not reservation");
+                return new ReservationDto
             {
                 Id = reservation.Id,
                 Date = reservation.Date,

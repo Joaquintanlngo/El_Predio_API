@@ -14,7 +14,7 @@ namespace Domain.Entities
         public float Price { get; set; }
         public string Description { get; set; }
         public bool IsAvailable { get; set; }
-
+        public string Category { get; set; }
         public List<Reservation>? Reservations { get; set; }
     }
 }

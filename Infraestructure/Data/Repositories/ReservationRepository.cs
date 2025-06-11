@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Infrastructure.Data.Repositories
 {
@@ -19,6 +20,16 @@ namespace Infrastructure.Data.Repositories
         public ReservationRepository(ApplicationContext context) : base(context)
         {
             _context = context;
+        }
+
+        public async Task<List<Reservation>> GetAllAsync()
+        {
+            return await _context.Reservations
+                .Include(c => c.Client)
+                .Include(c => c.Court)
+                .Where(c => c.Date >= DateOnly.FromDateTime(DateTime.Today))
+                .OrderBy(c => c.Date)
+                .ToListAsync();
         }
 
         public async Task<List<Reservation>> GetAllReservationForToDay(DateOnly date)
@@ -37,12 +48,12 @@ namespace Infrastructure.Data.Repositories
                 .Where(c => c.Date == date)
                 .ToListAsync();
         }
-        public async Task<List<Reservation>> GetAllReservationForCourt(int courtId)
+        public async Task<List<Reservation>> GetAllReservationForCourt(string courtName)
         {
             return await _context.Reservations
                 .Include(c => c.Client)
                 .Include(c => c.Court)
-                .Where(c => c.Court.Id == courtId)
+                .Where(c => c.Court.Name == courtName)
                 .ToListAsync();
         }
         

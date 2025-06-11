@@ -54,12 +54,12 @@ namespace Web.Controllers
             }
         }
 
-        [HttpGet("[action]/Filter-For-Court")]
-        public async Task<IActionResult> GetAllReservationForCourt(int courtId)
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllReservationForCourt(string courtName)
         {
             try
             {
-                return Ok(await _reservationService.GetAllReservationForCourt(courtId));
+                return Ok(await _reservationService.GetAllReservationForCourt(courtName));
             }
             catch (Exception ex)
             {

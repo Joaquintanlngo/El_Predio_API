@@ -15,10 +15,10 @@ namespace Application.Services
             _courtRepository = courtRepository;
         }
 
-        public async Task<List<CourtDto>> GetAll()
+        public async Task<List<CourtFrontDto>> GetAll()
         {
             var court = await _courtRepository.GetAllCourts();
-            return court.Select(CourtDto.Create).ToList();
+            return court.Select(CourtFrontDto.Create).ToList();
         }
 
         public async Task<Court> GetById(int id)
@@ -32,7 +32,8 @@ namespace Application.Services
                 Name = request.Name,
                 Duration = request.Duration,
                 Price = request.Price,
-                Description = request.Description
+                Description = request.Description,
+                Category = request.Category
             };
            return await _courtRepository.Create(court);
         }
@@ -47,6 +48,7 @@ namespace Application.Services
             courtFound.Duration = request.Duration ?? courtFound.Duration;
             courtFound.Price = request.Price ?? courtFound.Price;
             courtFound.Description = request.Description ?? courtFound.Description;
+            courtFound.Category = request.Category ?? courtFound.Category;
            
 
             return await _courtRepository.Update(courtFound);

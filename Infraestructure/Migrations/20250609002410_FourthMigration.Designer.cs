@@ -3,6 +3,7 @@ using System;
 using Infraestructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20250609002410_FourthMigration")]
+    partial class FourthMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.15");
@@ -57,7 +60,7 @@ namespace Infrastructure.Migrations
                             Description = "Cancha techada con cesped cintetico y caucho",
                             Duration = "60 min",
                             IsAvailable = false,
-                            Name = "5A",
+                            Name = "Cancha 5A (F5)",
                             Price = 40000f
                         },
                         new
@@ -67,7 +70,7 @@ namespace Infrastructure.Migrations
                             Description = "Cancha techada con cesped cintetico y caucho",
                             Duration = "60 min",
                             IsAvailable = false,
-                            Name = "5B",
+                            Name = "Cancha 5B (F5)",
                             Price = 45000f
                         },
                         new
@@ -77,7 +80,7 @@ namespace Infrastructure.Migrations
                             Description = "Cancha techada con cesped cintetico y caucho",
                             Duration = "60 min",
                             IsAvailable = false,
-                            Name = "6A",
+                            Name = "Cancha 6A (F6)",
                             Price = 60000f
                         },
                         new
@@ -87,7 +90,7 @@ namespace Infrastructure.Migrations
                             Description = "Cancha techada con cesped cintetico y caucho",
                             Duration = "60 min",
                             IsAvailable = false,
-                            Name = "6C",
+                            Name = "Cancha 6C (F6)",
                             Price = 60000f
                         },
                         new
@@ -97,7 +100,7 @@ namespace Infrastructure.Migrations
                             Description = "Cancha techada con cesped cintetico y caucho",
                             Duration = "60 min",
                             IsAvailable = false,
-                            Name = "7T",
+                            Name = "Cancha 7T (F7)",
                             Price = 70000f
                         },
                         new
@@ -107,7 +110,7 @@ namespace Infrastructure.Migrations
                             Description = "Cancha al aire libre con cesped cintetico y caucho",
                             Duration = "60 min",
                             IsAvailable = false,
-                            Name = "7AL",
+                            Name = "Cancha 7AL (F7)",
                             Price = 70000f
                         },
                         new
@@ -117,7 +120,7 @@ namespace Infrastructure.Migrations
                             Description = "Cancha al aire libre con cesped cintetico y caucho",
                             Duration = "60 min",
                             IsAvailable = false,
-                            Name = "8AL",
+                            Name = "Cancha 8AL (F8)",
                             Price = 83000f
                         });
                 });

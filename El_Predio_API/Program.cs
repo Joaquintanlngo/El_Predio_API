@@ -36,6 +36,17 @@ connection.Open();
 builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseSqlite(connection, b => b.MigrationsAssembly("Infrastructure")));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173") // origen del frontend
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -46,6 +57,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+// Aplicá la política antes de `app.UseAuthorization()` y después de `UseRouting()`
+app.UseCors("AllowReactApp");
 
 app.UseAuthorization();
 
