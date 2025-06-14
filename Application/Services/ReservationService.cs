@@ -60,15 +60,15 @@ namespace Application.Services
             return reservations.Select(ReservationDto.Create).ToList();
         }
         
-        public async Task<List<ReservationDto>> GetAllReservationForCourtOfToday(int courtId)
+        public async Task<List<GetReservationDto>> GetAllReservationForCourtOfDay(int courtId, string date)
         {
-            var date = DateOnly.FromDateTime(DateTime.Now);
-            var reservations = await _reservationRepository.GetAllReservationForCourtOfToday(courtId, date);
+            
+            var reservations = await _reservationRepository.GetAllReservationForCourtOfDay(courtId, DateOnly.Parse(date));
 
             if (reservations == null)
                 throw new Exception("No hay reservas para ese dia");
 
-            return reservations.Select(ReservationDto.Create).ToList();
+            return reservations.Select(GetReservationDto.Create).ToList();
         }
 
         public async Task<Reservation> CreateReservation(ReservationRequest request)

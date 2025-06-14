@@ -44,12 +44,23 @@ namespace Infraestructure.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
 
-        modelBuilder.Entity<Client>().HasData(new Client
+            modelBuilder.Entity<SysAdmin>().HasData(new SysAdmin
+            {
+                Id = 1,
+                FullName = "El Predio",
+                Email = "elpredio@gmail.com",
+                Password = BCrypt.Net.BCrypt.HashPassword("000"),
+                PhoneNumber = "3412121111",
+                Role = RolesEnum.SysAdmin
+            }
+            );
+
+            modelBuilder.Entity<Client>().HasData(new Client
             {
                 Id = 2,
                 FullName = "Joaquin Tanlongo",
                 Email = "joako.tanlon@gmail.com",
-                Password = "123",
+                Password = BCrypt.Net.BCrypt.HashPassword("123"),
                 PhoneNumber = "3412122907",
                 Role = RolesEnum.Client
             },
@@ -58,7 +69,7 @@ namespace Infraestructure.Data
                 Id = 3,
                 FullName = "Maximo Martin",
                 Email = "marmax0504@gmail.com",
-                Password = "456",
+                Password = BCrypt.Net.BCrypt.HashPassword("456"),
                 PhoneNumber = "3412122908",
                 Role = RolesEnum.Client
             },
@@ -67,7 +78,7 @@ namespace Infraestructure.Data
                 Id = 4,
                 FullName = "Mario Massonnat",
                 Email = "marucomass@gmail.com",
-                Password = "789",
+                Password = BCrypt.Net.BCrypt.HashPassword("789"),
                 PhoneNumber = "3412122909",
                 Role = RolesEnum.Client
             },
@@ -76,7 +87,7 @@ namespace Infraestructure.Data
                 Id = 5,
                 FullName = "Francisco Depetrini",
                 Email = "frandepe7@gmail.com",
-                Password = "111",
+                Password = BCrypt.Net.BCrypt.HashPassword("111"),
                 PhoneNumber = "3412122910",
                 Role = RolesEnum.Client
             }

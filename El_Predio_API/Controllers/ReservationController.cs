@@ -68,11 +68,11 @@ namespace Web.Controllers
         }
 
         [HttpGet("[action]/Filter-For-Court-Of-Today")]
-        public async Task<IActionResult> GetAllReservationForCourtOfToday(int courtId)
+        public async Task<IActionResult> GetAllReservationForCourtOfDay(int courtId, string date)
         {
             try
             {
-                return Ok(await _reservationService.GetAllReservationForCourtOfToday(courtId));
+                return Ok(await _reservationService.GetAllReservationForCourtOfDay(courtId, date));
             }
             catch (Exception ex)
             {

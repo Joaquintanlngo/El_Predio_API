@@ -13,6 +13,6 @@ namespace Domain.Interfaces
         Task<List<Reservation>> GetAllReservationForToDay(DateOnly date);
         Task<List<Reservation>> GetAllReservationForDay(DateOnly date);
         Task<List<Reservation>> GetAllReservationForCourt(string courtName);
-        Task<List<Reservation>> GetAllReservationForCourtOfToday(int courtId, DateOnly date);
+        Task<List<Reservation>> GetAllReservationForCourtOfDay(int courtId, DateOnly date);
     }
 }

@@ -15,7 +15,7 @@ namespace Application.Interfaces
         Task<List<ReservationDto>> GetAllReservationForToDay();
         Task<List<ReservationDto>> GetAllReservationForDay(DateOnly date);
         Task<List<ReservationDto>> GetAllReservationForCourt(string courtName);
-        Task<List<ReservationDto>> GetAllReservationForCourtOfToday(int courtId);
+        Task<List<GetReservationDto>> GetAllReservationForCourtOfDay(int courtId, string date);
         Task<Reservation> CreateReservation(ReservationRequest request);
         Task<Reservation> DeleteReservation(int reservationId);
     }

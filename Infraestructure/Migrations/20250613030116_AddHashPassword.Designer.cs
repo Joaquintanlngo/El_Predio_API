@@ -3,6 +3,7 @@ using System;
 using Infraestructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20250613030116_AddHashPassword")]
+    partial class AddHashPassword
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.15");
@@ -198,7 +201,7 @@ namespace Infrastructure.Migrations
                             Id = 2,
                             Email = "joako.tanlon@gmail.com",
                             FullName = "Joaquin Tanlongo",
-                            Password = "$2a$11$LVTGlp6xsqEXP3l86UwVA./bYUe9UgEB0PqSUrokvOf0O/cugko2K",
+                            Password = "$2a$11$LHOECe1DARxV3lRj3wBEaet3cSTZpHMaBnvwkptpgx5jIDFBJm0v6",
                             PhoneNumber = "3412122907",
                             Role = 1
                         },
@@ -207,7 +210,7 @@ namespace Infrastructure.Migrations
                             Id = 3,
                             Email = "marmax0504@gmail.com",
                             FullName = "Maximo Martin",
-                            Password = "$2a$11$nMmouPQppFuW7MNaKX4sf.gvLZ.0lc.F3UnRJklNFAKvycNg7MbW2",
+                            Password = "$2a$11$7jCp1YZJVc8PHZ8gByHqb.8NDvRFRFqfvydAPuHvls4a.IuO13O2q",
                             PhoneNumber = "3412122908",
                             Role = 1
                         },
@@ -216,7 +219,7 @@ namespace Infrastructure.Migrations
                             Id = 4,
                             Email = "marucomass@gmail.com",
                             FullName = "Mario Massonnat",
-                            Password = "$2a$11$Ua3dXdzp9MnCZpVwxfLe.ewHWaH1Op7D0mPIT72kj/4aEP9IB88c2",
+                            Password = "$2a$11$GpBtsma3k2arR40TGv711.6vM4Wn1eQMQFplJbRisNyc2sTL2YllO",
                             PhoneNumber = "3412122909",
                             Role = 1
                         },
@@ -225,7 +228,7 @@ namespace Infrastructure.Migrations
                             Id = 5,
                             Email = "frandepe7@gmail.com",
                             FullName = "Francisco Depetrini",
-                            Password = "$2a$11$XuaurGxsIKy9KHDRKf2tH.t02A669dr7NwN9p6PcXAQWHjeE96lwK",
+                            Password = "$2a$11$HLs5dJ/tX.v.kDFkylWHI.cnWen0Tw4XPZC.eqY4RRmyTDkAL3Dtq",
                             PhoneNumber = "3412122910",
                             Role = 1
                         });
@@ -236,17 +239,6 @@ namespace Infrastructure.Migrations
                     b.HasBaseType("Domain.Entities.User");
 
                     b.HasDiscriminator().HasValue(0);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Email = "elpredio@gmail.com",
-                            FullName = "El Predio",
-                            Password = "$2a$11$fUh8VQp6563Nk.0Md.hBc.QwK0CXN.Z83lCo1yZ5t1Bv473XvrBbO",
-                            PhoneNumber = "3412121111",
-                            Role = 0
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Reservation", b =>

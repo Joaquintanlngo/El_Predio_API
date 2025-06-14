@@ -34,19 +34,23 @@ namespace Infrastructure.Data.Repositories
 
         public async Task<List<Reservation>> GetAllReservationForToDay(DateOnly date)
         {
-            return await _context.Reservations
+            return (await _context.Reservations
                 .Include(c => c.Client)
                 .Include(c => c.Court)
                 .Where(c => c.Date == date)
-                .ToListAsync();
+                .ToListAsync())
+                .OrderBy(c => c.Time)
+                .ToList();
         }
         public async Task<List<Reservation>> GetAllReservationForDay(DateOnly date)
         {
-            return await _context.Reservations
+            return (await _context.Reservations
                 .Include(c => c.Client)
                 .Include(c => c.Court)
                 .Where(c => c.Date == date)
-                .ToListAsync();
+                .ToListAsync())
+                .OrderBy(c => c.Time)
+                .ToList();
         }
         public async Task<List<Reservation>> GetAllReservationForCourt(string courtName)
         {
@@ -54,10 +58,12 @@ namespace Infrastructure.Data.Repositories
                 .Include(c => c.Client)
                 .Include(c => c.Court)
                 .Where(c => c.Court.Name == courtName)
+                .Where(c => c.Date >= DateOnly.FromDateTime(DateTime.Today))
+                .OrderBy(c => c.Date)
                 .ToListAsync();
         }
         
-        public async Task<List<Reservation>> GetAllReservationForCourtOfToday(int courtId, DateOnly date)
+        public async Task<List<Reservation>> GetAllReservationForCourtOfDay(int courtId, DateOnly date)
         {
             return await _context.Reservations
                 .Include(c => c.Client)
