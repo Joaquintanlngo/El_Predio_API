@@ -17,7 +17,8 @@ namespace Application.Models.Responses
         public int ClientId { get; set; }
         public int CourtId { get; set; }
         public string Court { get; set; }
-        public ClientDto Client { get; set; }
+        public string ClientName { get; set; }
+        public string ClientPhone { get; set; }
 
         public static ReservationDto Create(Reservation reservation)
         {
@@ -32,7 +33,8 @@ namespace Application.Models.Responses
                 ClientId = reservation.ClientId,
                 CourtId = reservation.CourtId,
                 Court = reservation.Court.Name,
-                Client = ClientDto.Create(reservation.Client)
+                ClientName = reservation.Client.FullName,
+                ClientPhone = reservation.Client.PhoneNumber
             };
         }
     }

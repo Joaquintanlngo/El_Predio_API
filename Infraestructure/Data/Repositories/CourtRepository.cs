@@ -17,6 +17,7 @@ namespace Infraestructure.Data.Repositories
         {
             return await _context.Courts
                 .Include(c => c.Reservations)
+                    .ThenInclude(c => c.Client)
                 .ToListAsync();
         }
     }

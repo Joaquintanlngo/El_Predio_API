@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20250609002410_FourthMigration")]
-    partial class FourthMigration
+    [Migration("20250707011622_Initial_Migration")]
+    partial class Initial_Migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,7 +60,7 @@ namespace Infrastructure.Migrations
                             Description = "Cancha techada con cesped cintetico y caucho",
                             Duration = "60 min",
                             IsAvailable = false,
-                            Name = "Cancha 5A (F5)",
+                            Name = "5A",
                             Price = 40000f
                         },
                         new
@@ -70,7 +70,7 @@ namespace Infrastructure.Migrations
                             Description = "Cancha techada con cesped cintetico y caucho",
                             Duration = "60 min",
                             IsAvailable = false,
-                            Name = "Cancha 5B (F5)",
+                            Name = "5B",
                             Price = 45000f
                         },
                         new
@@ -80,7 +80,7 @@ namespace Infrastructure.Migrations
                             Description = "Cancha techada con cesped cintetico y caucho",
                             Duration = "60 min",
                             IsAvailable = false,
-                            Name = "Cancha 6A (F6)",
+                            Name = "6A",
                             Price = 60000f
                         },
                         new
@@ -90,7 +90,7 @@ namespace Infrastructure.Migrations
                             Description = "Cancha techada con cesped cintetico y caucho",
                             Duration = "60 min",
                             IsAvailable = false,
-                            Name = "Cancha 6C (F6)",
+                            Name = "6C",
                             Price = 60000f
                         },
                         new
@@ -100,7 +100,7 @@ namespace Infrastructure.Migrations
                             Description = "Cancha techada con cesped cintetico y caucho",
                             Duration = "60 min",
                             IsAvailable = false,
-                            Name = "Cancha 7T (F7)",
+                            Name = "7T",
                             Price = 70000f
                         },
                         new
@@ -110,7 +110,7 @@ namespace Infrastructure.Migrations
                             Description = "Cancha al aire libre con cesped cintetico y caucho",
                             Duration = "60 min",
                             IsAvailable = false,
-                            Name = "Cancha 7AL (F7)",
+                            Name = "7AL",
                             Price = 70000f
                         },
                         new
@@ -120,9 +120,54 @@ namespace Infrastructure.Migrations
                             Description = "Cancha al aire libre con cesped cintetico y caucho",
                             Duration = "60 min",
                             IsAvailable = false,
-                            Name = "Cancha 8AL (F8)",
+                            Name = "8AL",
                             Price = 83000f
                         });
+                });
+
+            modelBuilder.Entity("Domain.Entities.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CourtId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ExternalReference")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<TimeSpan>("Time")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("Domain.Entities.Reservation", b =>
@@ -137,13 +182,22 @@ namespace Infrastructure.Migrations
                     b.Property<int>("CourtId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("PaidAmount")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
                     b.Property<TimeSpan>("Time")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("TotalPrice")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -201,7 +255,7 @@ namespace Infrastructure.Migrations
                             Id = 2,
                             Email = "joako.tanlon@gmail.com",
                             FullName = "Joaquin Tanlongo",
-                            Password = "123",
+                            Password = "$2a$11$Pinc2b4Cp/AMVsLQsXZviOl6Gtn3tFwPOa01V8rYNtcTuA30gTLkO",
                             PhoneNumber = "3412122907",
                             Role = 1
                         },
@@ -210,7 +264,7 @@ namespace Infrastructure.Migrations
                             Id = 3,
                             Email = "marmax0504@gmail.com",
                             FullName = "Maximo Martin",
-                            Password = "456",
+                            Password = "$2a$11$nmYl1GetcLyCZu1q6Q6yzeniwlWdQgEdTtwl2QqJXSgMl1xqy5tEm",
                             PhoneNumber = "3412122908",
                             Role = 1
                         },
@@ -219,7 +273,7 @@ namespace Infrastructure.Migrations
                             Id = 4,
                             Email = "marucomass@gmail.com",
                             FullName = "Mario Massonnat",
-                            Password = "789",
+                            Password = "$2a$11$7QEmyyqJel/NSklxQ615JOLBlatw1/WzoE/Sy1uBSH27Zd72qiYCG",
                             PhoneNumber = "3412122909",
                             Role = 1
                         },
@@ -228,7 +282,7 @@ namespace Infrastructure.Migrations
                             Id = 5,
                             Email = "frandepe7@gmail.com",
                             FullName = "Francisco Depetrini",
-                            Password = "111",
+                            Password = "$2a$11$A.arBjyt5PhYHPMcWDlZ9eLACVdlh7RLXO8a2hJL9F1MgkEd5zx3e",
                             PhoneNumber = "3412122910",
                             Role = 1
                         });
@@ -239,6 +293,17 @@ namespace Infrastructure.Migrations
                     b.HasBaseType("Domain.Entities.User");
 
                     b.HasDiscriminator().HasValue(0);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "elpredio@gmail.com",
+                            FullName = "El Predio",
+                            Password = "$2a$11$tNgtGW7xiqCkEwcZChWMGuVUnKT.0HGRH/8zvdFe8SodfUUA9FWR6",
+                            PhoneNumber = "3412121111",
+                            Role = 0
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Reservation", b =>

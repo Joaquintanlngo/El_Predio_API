@@ -16,8 +16,9 @@ namespace Infraestructure.Data
         public DbSet<Reservation> Reservations { get; set; }
 
         // Esto de acá no crea todas estas tablas sino que las hace disponibles para consultas en vez de tener que llamar a la tabla Users
-        public DbSet<Client> clients { get; set; }
-        public DbSet<SysAdmin> sysAdmins { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<SysAdmin> SysAdmins { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 

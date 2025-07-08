@@ -122,6 +122,51 @@ namespace Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Domain.Entities.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CourtId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ExternalReference")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<TimeSpan>("Time")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("Domain.Entities.Reservation", b =>
                 {
                     b.Property<int>("Id")
@@ -134,13 +179,22 @@ namespace Infrastructure.Migrations
                     b.Property<int>("CourtId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("PaidAmount")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
                     b.Property<TimeSpan>("Time")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("TotalPrice")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -198,7 +252,7 @@ namespace Infrastructure.Migrations
                             Id = 2,
                             Email = "joako.tanlon@gmail.com",
                             FullName = "Joaquin Tanlongo",
-                            Password = "$2a$11$LVTGlp6xsqEXP3l86UwVA./bYUe9UgEB0PqSUrokvOf0O/cugko2K",
+                            Password = "$2a$11$Pinc2b4Cp/AMVsLQsXZviOl6Gtn3tFwPOa01V8rYNtcTuA30gTLkO",
                             PhoneNumber = "3412122907",
                             Role = 1
                         },
@@ -207,7 +261,7 @@ namespace Infrastructure.Migrations
                             Id = 3,
                             Email = "marmax0504@gmail.com",
                             FullName = "Maximo Martin",
-                            Password = "$2a$11$nMmouPQppFuW7MNaKX4sf.gvLZ.0lc.F3UnRJklNFAKvycNg7MbW2",
+                            Password = "$2a$11$nmYl1GetcLyCZu1q6Q6yzeniwlWdQgEdTtwl2QqJXSgMl1xqy5tEm",
                             PhoneNumber = "3412122908",
                             Role = 1
                         },
@@ -216,7 +270,7 @@ namespace Infrastructure.Migrations
                             Id = 4,
                             Email = "marucomass@gmail.com",
                             FullName = "Mario Massonnat",
-                            Password = "$2a$11$Ua3dXdzp9MnCZpVwxfLe.ewHWaH1Op7D0mPIT72kj/4aEP9IB88c2",
+                            Password = "$2a$11$7QEmyyqJel/NSklxQ615JOLBlatw1/WzoE/Sy1uBSH27Zd72qiYCG",
                             PhoneNumber = "3412122909",
                             Role = 1
                         },
@@ -225,7 +279,7 @@ namespace Infrastructure.Migrations
                             Id = 5,
                             Email = "frandepe7@gmail.com",
                             FullName = "Francisco Depetrini",
-                            Password = "$2a$11$XuaurGxsIKy9KHDRKf2tH.t02A669dr7NwN9p6PcXAQWHjeE96lwK",
+                            Password = "$2a$11$A.arBjyt5PhYHPMcWDlZ9eLACVdlh7RLXO8a2hJL9F1MgkEd5zx3e",
                             PhoneNumber = "3412122910",
                             Role = 1
                         });
@@ -243,7 +297,7 @@ namespace Infrastructure.Migrations
                             Id = 1,
                             Email = "elpredio@gmail.com",
                             FullName = "El Predio",
-                            Password = "$2a$11$fUh8VQp6563Nk.0Md.hBc.QwK0CXN.Z83lCo1yZ5t1Bv473XvrBbO",
+                            Password = "$2a$11$tNgtGW7xiqCkEwcZChWMGuVUnKT.0HGRH/8zvdFe8SodfUUA9FWR6",
                             PhoneNumber = "3412121111",
                             Role = 0
                         });

@@ -13,6 +13,9 @@ namespace Domain.Entities
         public DateOnly Date { get; set; }
         public TimeSpan Time { get; set; }
         public StatusEnum Status { get; set; }
+        public decimal TotalPrice { get; set; }
+        public decimal PaidAmount { get; set; }
+        public DateTime CreatedAt { get; set; }
         public int ClientId { get; set; }
         public int CourtId { get; set; }
         public Client Client { get; set; }

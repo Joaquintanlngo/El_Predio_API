@@ -15,6 +15,7 @@ namespace Application.Models.Responses
         public float Price { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
+        public List<ReservationDto>? Reservations { get; set; }
 
         public static CourtFrontDto Create(Court court)
         {
@@ -25,7 +26,8 @@ namespace Application.Models.Responses
                 Duration = court.Duration,
                 Price = court.Price,
                 Description = court.Description,
-                Category = court.Category
+                Category = court.Category,
+                Reservations = court.Reservations?.Select(r => ReservationDto.Create(r)).ToList() ?? new()
             };
         }
     }

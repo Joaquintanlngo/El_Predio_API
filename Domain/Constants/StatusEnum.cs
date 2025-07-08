@@ -9,7 +9,8 @@ namespace Domain.Constants
     public enum StatusEnum
     {
         Pending,
-        Confirmed,
+        Success,
         Cancelled
+        
     }
 }

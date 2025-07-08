@@ -80,7 +80,6 @@ builder.Services.AddSwaggerGen(setupAction =>
 #region Services
 builder.Services.AddScoped<ICourtService, CourtService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
-builder.Services.AddScoped<IMercadoPagoPayment, MercadoPagoPayment>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
