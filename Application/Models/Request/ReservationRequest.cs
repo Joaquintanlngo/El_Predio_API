@@ -13,5 +13,6 @@ namespace Application.Models.Request
         public string Time { get; set; }
         public int ClientId { get; set; }
         public int CourtId { get; set; }
+        public string? PreferenceId { get; set; }
     }
 }

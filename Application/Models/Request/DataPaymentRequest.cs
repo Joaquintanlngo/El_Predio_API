@@ -15,5 +15,10 @@ namespace Application.Models.Request
         public decimal Price { get; set; }
         [Required]
         public string SuccessUrl { get; set; }
+
+        public string Date { get; set; }
+        public string Time { get; set; }
+        public int ClientId { get; set; }
+        public int CourtId { get; set; }
     }
 }

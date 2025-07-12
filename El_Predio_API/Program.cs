@@ -36,7 +36,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("ClientPolicy", policy => policy.RequireRole("Client"));
 });
 
-
+builder.Services.AddHostedService<ReservationCleanupService>();
 // Leer el AccessToken desde appsettings.json
 var accessToken = builder.Configuration["MercadoPago:AccessToken"];
 
@@ -84,6 +84,7 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IMercadoPagoService, MercadoPagoService>();
+builder.Services.AddScoped<IWebhookService, WebhookService>();
 #endregion
 
 #region Repositories

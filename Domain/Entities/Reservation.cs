@@ -16,6 +16,7 @@ namespace Domain.Entities
         public decimal TotalPrice { get; set; }
         public decimal PaidAmount { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string? PreferenceId { get; set; }
         public int ClientId { get; set; }
         public int CourtId { get; set; }
         public Client Client { get; set; }

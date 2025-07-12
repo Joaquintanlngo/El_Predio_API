@@ -1,4 +1,5 @@
 ﻿using Application.Models.Responses;
+using Domain.Constants;
 using Domain.Entities;
 using Domain.Interfaces;
 using Infraestructure.Data;
@@ -32,6 +33,11 @@ namespace Infrastructure.Data.Repositories
                 .ToListAsync();
         }
 
+        public async Task<Reservation> GetByPreferenceId(string preferenceId)
+        {
+            return await _context.Reservations
+                .FirstOrDefaultAsync(r => r.PreferenceId == preferenceId);
+        }
         public async Task<List<Reservation>> GetAllReservationForToDay(DateOnly date)
         {
             return (await _context.Reservations
@@ -70,6 +76,28 @@ namespace Infrastructure.Data.Repositories
                 .Include(c => c.Court)
                 .Where(c => c.Court.Id == courtId && c.Date == date)
                 .ToListAsync();
+        }
+
+        public async Task<Reservation> GetReservationByCourtDayTime(int courtId, DateOnly date, TimeSpan time)
+        {
+            return await _context.Reservations
+                .Include(c => c.Client)
+                .Include(c => c.Court)
+                .FirstOrDefaultAsync(c => c.CourtId == courtId && c.Date == date && c.Time == time);
+        }
+
+        public async Task DeleteExpiredPendingReservations()
+        {
+            var now = DateTime.UtcNow;
+            var expired = await _context.Reservations
+                .Where(r => r.Status == StatusEnum.Pending && r.CreatedAt < now.AddMinutes(-5))
+                .ToListAsync();
+
+            if (expired.Any())
+            {
+                _context.Reservations.RemoveRange(expired);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

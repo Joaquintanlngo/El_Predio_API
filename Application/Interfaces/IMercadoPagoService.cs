@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.Models.Request;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Application.Interfaces
 {
     public interface IMercadoPagoService
     {
-        Task<string> CreatePaymentAsync(decimal price, string title, string successUrl);
+        Task<string> CreatePaymentAsync(decimal price, string title, string successUrl, string Date, string Time, int ClientId, int CourtId);
     }
 }

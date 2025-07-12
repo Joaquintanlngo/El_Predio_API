@@ -16,10 +16,12 @@ namespace Application.Services
     public class ReservationService : IReservationService
     {
         private readonly IReservationRepository _reservationRepository;
+        private readonly ICourtRepository _courtRepository;
 
-        public ReservationService(IReservationRepository reservationRepository)
+        public ReservationService(IReservationRepository reservationRepository, ICourtRepository courtRepository)
         {
             _reservationRepository = reservationRepository;
+            _courtRepository = courtRepository;
         }
 
         public async Task<List<ReservationDto>> GetAllReservation()
@@ -75,18 +77,25 @@ namespace Application.Services
         {
             if (request == null) throw new Exception("Complete todos los campos");
 
+            var court = await _courtRepository.GetById(request.CourtId);
+
+            if (court == null) throw new Exception("Court not exist");
+
             var reservation = new Reservation()
             {
                 Date = DateOnly.Parse(request.Date),
                 Time = TimeSpan.Parse(request.Time),
                 Status = StatusEnum.Pending,
+                TotalPrice = (decimal)court.Price,
                 ClientId = request.ClientId,
-                CourtId = request.CourtId
+                CourtId = request.CourtId,
+                CreatedAt = DateTime.UtcNow,
+                PreferenceId = request.PreferenceId ?? ""
             };
 
             return await _reservationRepository.Create(reservation);
         }
-        
+
         public async Task<Reservation> DeleteReservation(int reservationId)
         {
             var reservation = await _reservationRepository.GetById(reservationId);
