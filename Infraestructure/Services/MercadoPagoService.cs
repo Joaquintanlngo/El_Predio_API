@@ -49,7 +49,7 @@ namespace Infrastructure.Services
                 },
                 BackUrls = new PreferenceBackUrlsRequest { Success = successUrl },
                 AutoReturn = "approved",
-                NotificationUrl = "https://0a6988147d34.ngrok-free.app/api/MercadoPago",
+                NotificationUrl = "https://59467b292a55.ngrok-free.app/api/MercadoPago",
                 ExpirationDateFrom = now,
                 ExpirationDateTo = now.AddMinutes(5)
             };

@@ -30,6 +30,11 @@ namespace Application.Services
             return reservations.Select(ReservationDto.Create).ToList();
         }
 
+        public async Task<Reservation> GetReservationByCourtDayTime(int courtId, DateOnly date, TimeSpan time)
+        {
+            return await _reservationRepository.GetReservationByCourtDayTime(courtId, date, time);
+        }
+
         public async Task<List<ReservationDto>> GetAllReservationForToDay()
         {
             var date = DateOnly.FromDateTime(DateTime.Now);
@@ -73,6 +78,16 @@ namespace Application.Services
             return reservations.Select(GetReservationDto.Create).ToList();
         }
 
+        public async Task<List<MyReservationsDto>> GetMyReservation(int userId, string status)
+        {
+            var reservations = await _reservationRepository.GetMyReservation(userId, status);
+
+            if (reservations == null)
+                throw new Exception("No hay reservas aun");
+
+            return reservations.Select(MyReservationsDto.Create).ToList();
+        }
+
         public async Task<Reservation> CreateReservation(ReservationRequest request)
         {
             if (request == null) throw new Exception("Complete todos los campos");
@@ -105,6 +120,14 @@ namespace Application.Services
             await _reservationRepository.Delete(reservation);
 
             return reservation;
+        }
+
+
+        public async Task DeleteReservationPending(int courtId, DateOnly date, TimeSpan time)
+        {
+            var reservation = await _reservationRepository.GetReservationByCourtDayTime(courtId, date, time);
+            if (reservation == null) throw new Exception("Reservation not exist");
+            await _reservationRepository.Delete(reservation);
         }
     }
 }

@@ -78,12 +78,45 @@ namespace Infrastructure.Data.Repositories
                 .ToListAsync();
         }
 
+
         public async Task<Reservation> GetReservationByCourtDayTime(int courtId, DateOnly date, TimeSpan time)
         {
             return await _context.Reservations
                 .Include(c => c.Client)
                 .Include(c => c.Court)
                 .FirstOrDefaultAsync(c => c.CourtId == courtId && c.Date == date && c.Time == time);
+        }
+        public async Task<List<Reservation>> GetMyReservation(int userId, string status)
+        {
+            var currentTime = DateTime.Now.TimeOfDay;
+            var currentDay = DateOnly.FromDateTime(DateTime.Now);
+
+
+            var query = _context.Reservations
+                .Include(c => c.Client)
+                .Include(c => c.Court)
+                .Where(c => c.ClientId == userId)
+                .AsEnumerable();
+
+            if (status == "Activas")
+            {
+                query = query.Where(c =>
+                    c.Date > currentDay || (c.Date == currentDay && c.Time >= currentTime)
+                );
+            }
+            else if (status == "Pasadas")
+            {
+                query = query.Where(c =>
+                    c.Date < currentDay || (c.Date == currentDay && c.Time < currentTime)
+                );
+            }
+
+            var result = query
+                .OrderBy(c => c.Date)
+                .ThenBy(c => c.Time)
+                .ToList();
+
+            return await Task.FromResult(result);
         }
 
         public async Task DeleteExpiredPendingReservations()

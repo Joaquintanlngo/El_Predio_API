@@ -1,7 +1,9 @@
 ﻿using Application.Interfaces;
 using Application.Models.Request;
+using Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Web.Extensions;
 
 namespace Web.Controllers
 {
@@ -28,6 +30,21 @@ namespace Web.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetReservationByCourtDayTime(int courtId, string date, string time)
+        {
+            try
+            {
+                var reservation = await _reservationService.GetReservationByCourtDayTime(courtId, DateOnly.Parse(date), TimeSpan.Parse(time));
+                return Ok(reservation.Id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("[action]/Filter-For-Today")]
         public async Task<IActionResult> GetAllReservationDay()
         {
@@ -80,6 +97,20 @@ namespace Web.Controllers
             }
         }
 
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetMyReservation(string status)
+        {
+            try
+            {
+                return Ok(await _reservationService.GetMyReservation(User.GetUserIntId(), status));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("[action]")]
         public async Task<IActionResult> Create(ReservationRequest request)
         {
@@ -99,6 +130,20 @@ namespace Web.Controllers
             try
             {
                 return Ok(await _reservationService.DeleteReservation(reservationId));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("[action]")]
+        public async Task<IActionResult> DeleteReservationPending(int courtId, string date, string time)
+        {
+            try
+            {
+                await _reservationService.DeleteReservationPending(courtId, DateOnly.Parse(date), TimeSpan.Parse(time));
+                return Ok();
             }
             catch (Exception ex)
             {

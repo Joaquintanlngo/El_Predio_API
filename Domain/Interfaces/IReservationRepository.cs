@@ -16,6 +16,7 @@ namespace Domain.Interfaces
         Task<List<Reservation>> GetAllReservationForCourt(string courtName);
         Task<List<Reservation>> GetAllReservationForCourtOfDay(int courtId, DateOnly date);
         Task<Reservation> GetReservationByCourtDayTime(int courtId, DateOnly date, TimeSpan time);
+        Task<List<Reservation>> GetMyReservation(int userId, string status);
         Task DeleteExpiredPendingReservations();
     }
 }
